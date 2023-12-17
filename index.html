@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Trybe - by 12th | Coming Soon </title>
+</head>
+<body class="relative w-full h-screen overflow-hidden p-8">
+    <img class="fixed top-0 left-0 object-cover w-full h-full -z-10" src="https://ik.imagekit.io/0cerv18s5/splash.png?updatedAt=1700419676523" alt="splash">
+
+    <main id="countdown" class="w-full h-screen grid place-items-center place-content-center gap-y-20">
+
+        <section class="flex gap-x-8 lg:ml-10">
+            
+            <div class="flex flex-col gap-y-2 text-center">
+                <p id="hours" class="text-5xl font-bold">13</p>
+                <p class="text-gray-500">HOURS</p>
+            </div>
+
+            <span class="text-5xl font-bold">:</span>
+
+       
+            <div class="flex flex-col gap-y-2 text-center">
+                <p id="minutes" class="text-5xl font-bold">48</p>
+                <p class="text-gray-500">MINUTES</p>
+            </div>
+
+            <span class="text-5xl font-bold">:</span>
+
+       
+            <div class="flex flex-col gap-y-2 text-center">
+                <p id="seconds" class="text-5xl font-bold">30</p>
+                <p class="text-gray-500">SECONDS</p>
+            </div>
+
+        </section>
+            
+        <section class="text-center lg:flex lg:justify-center lg:items-center lg:gap-x-8">
+            <h1 class="text-7xl lg:text-8xl font-bold text-gray-600">COMING</h1>
+            <div class="text-center my-5 space-y-3">
+               <div class="flex justify-center gap-x-2">
+                <p id="daysTens" class="p-3 bg-black text-white text-6xl lg:text-8xl font-bold">1</p>
+                <p id="daysUnits" class="p-3 bg-black text-white text-6xl lg:text-8xl font-bold">2</p>
+               </div>
+               <p class="tracking-[.4em] lg:text-xl">DAYS MORE</p>
+            </div>
+            <h1 class="text-7xl lg:text-8xl font-bold text-gray-600">SOON</h1>
+        </section>
+
+        <article class="space-y-3 max-w-[40rem]">
+            <h2 class="font-bold">We are coming soon...</h2>
+            <p>Get ready to elevate your style and transform your living spaces with our upcoming 
+                website launch. We're bringing you a treasure trove of unique and stylish finds,
+                from statement-making accessories to exquisite artwork and chic furniture pieces.</p>
+        </article>
+        
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/plugin/duration.min.js"></script>
+    <script>
+        dayjs.extend(dayjs_plugin_duration);
+
+
+        function activateCountDown(element, dateString) {
+            const targetDate = dayjs(dateString);
+
+            setInterval(() => {
+                const now = dayjs();
+                const duration = dayjs.duration(targetDate.diff(now));
+                const days = duration.days();
+                const hours = duration.hours();
+                const minutes = duration.minutes();
+                const seconds = duration.seconds();
+                const daysUnits = days % 10;
+                const daysTens = Math.floor(days / 10);
+                
+                
+
+                console.log(days, hours, minutes, seconds);
+
+                element.querySelector("#daysTens").textContent = daysTens;
+                element.querySelector("#daysUnits").textContent = daysUnits;
+                element.querySelector("#hours").textContent = hours;
+                element.querySelector("#minutes").textContent = minutes;
+                element.querySelector("#seconds").textContent = seconds;
+                
+            }, 250)
+        }
+
+        activateCountDown(document.getElementById("countdown"), "2023-12-31T00:00:00");
+    </script>
+</body>
+</html>
